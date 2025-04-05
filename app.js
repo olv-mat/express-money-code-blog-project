@@ -4,9 +4,10 @@ const app = express()
 const port = 3000
 
 const posts = {
-    "teste-1": "artigo-teste-1.html",
-    "teste-2": "artigo-teste-2.html"
+    'fundos-imobiliarios-como-viver-de-aluguel-dos-outros': 'fundos-imobiliarios-como-viver-de-aluguel-dos-outros.html',
 }
+
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'))
@@ -34,5 +35,5 @@ app.use((req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
+  console.log(`app runnig on port ${port}`)
 })
