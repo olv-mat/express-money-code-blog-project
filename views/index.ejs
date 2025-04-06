@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="bg-black text-white">
+    <%- include('partials/head') %>
+    <body class="flex flex-col min-h-screen font-sans">
+        <%- include('partials/default-header') %>
+        <main class="flex-grow px-4 md:px-8 py-10">
+            <div class="max-w-5xl mx-auto space-y-12">
+                <%- include('partials/hero-section') %>
+                <section>
+                    <h3 class="text-2xl font-bold mb-8 border-b-2 border-zinc-700 pb-3 tracking-tight">Artigos</h3>
+                    <div class="grid gap-8 md:grid-cols-2">
+                        <% posts.forEach(post => { %>
+                            <a href="/artigo/<%= post.slug %>" class="block bg-zinc-800 rounded-2xl overflow-hidden transform transition-transform duration-300 hover:scale-[1.02]">
+                              <img src="/images/<%= post.image %>" alt="<%= post.title %>" class="w-full h-48 object-cover" loading="lazy" />
+                              <div class="p-6">
+                                <h4 class="text-xl font-bold mb-2"><%= post.title %></h4>
+                                <p class="text-sm text-zinc-400 mb-4"><%= post.excerpt %></p>
+                                <span class="text-sm text-blue-400 hover:underline">Ler mais</span>
+                              </div>
+                            </a>
+                        <% }) %>
+                    </div>
+                </section>
+            </div>
+        </main>
+        <%- include('partials/footer') %>
+    </body>
+</html>

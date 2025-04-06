@@ -1,0 +1,28 @@
+{
+    "id": 1,
+    "title": "",
+    "excerpt": "",
+    "slug": "",
+    "date": "",
+    "image": "",
+    "content": [
+        {
+            "type": "paragraph",
+            "text": ""
+        },
+        {
+            "type": "heading",
+            "text": ""
+        },
+        {
+            "type": "list",
+            "items": [
+                "",
+                "",
+                "",
+                "",
+                ""
+            ]
+        }
+    ]
+}

@@ -1,39 +1,63 @@
 const express = require('express')
+const fs = require('fs')
 const path = require('path')
 const app = express()
 const port = 3000
 
+const postsDir = path.join(__dirname, 'posts')
+
 const posts = {
-    'fundos-imobiliarios-como-viver-de-aluguel-dos-outros': 'fundos-imobiliarios-como-viver-de-aluguel-dos-outros.html',
+    'fundos-imobiliarios-como-gerar-renda-passiva-atraves-do-mercado-imobiliario': '0106042025.json',
+    'como-se-organizar-financeiramente-antes-de-investir': '0206042025.json',
 }
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.set('view engine', 'ejs')
+app.set('views', path.join(__dirname, 'views'))
+
+app.use(express.static(path.join(__dirname, 'public')))
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'))
+
+    const files = fs.readdirSync(postsDir)
+
+    const posts = files
+        .filter(file => file !== 'post.json')
+        .map((file) => {
+            const { content, ...postData } = JSON.parse(fs.readFileSync(path.join(postsDir, file), 'utf-8'))
+            return postData
+        })
+        .sort((a, b) => b.id - a.id)
+
+    res.render('index', { 
+        posts
+    })
 })
 
 app.get('/sobre', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'about.html'))
+    res.render('about')
 })
 
 app.get('/artigo/:slug', (req, res) => {
 
     let slug = req.params.slug
-    let template = posts[slug]
+    let file = posts[slug]
 
-    if (!template) {
-        res.status(404).sendFile(path.join(__dirname, 'public', '404.html'))
+    if (!file) {
+        res.status(404).render('404')
         return
     }
 
-    res.sendFile(path.join(__dirname, 'public', 'articles', template))
+    let post = JSON.parse(fs.readFileSync(path.join(postsDir, file), 'utf-8'))
+    
+    res.render('post', {
+        post
+    })
 })
 
 app.use((req, res) => {
-    res.status(404).sendFile(path.join(__dirname, 'public', '404.html'))
-});
+    res.status(404).render('404')
+})
 
 app.listen(port, () => {
-  console.log(`app runnig on port ${port}`)
+  console.log(`App runnig on port ${port}`)
 })

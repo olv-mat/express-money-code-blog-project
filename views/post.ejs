@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="bg-black text-white">
+    <%- include('partials/head') %>
+    <body class="flex flex-col min-h-screen font-sans">
+        <%- include('partials/default-header') %>
+        <main class="flex-grow px-4 md:px-8 py-12">
+            <article class="max-w-3xl mx-auto space-y-6">
+                <img src="/images/<%= post.image %>" alt="<%= post.title %>" class="w-full rounded-xl shadow-xl" loading="lazy" />
+                <h2 class="text-3xl font-bold leading-tight mt-6"><%= post.title %></h2>
+                <p class="text-zinc-500 text-sm">Publicado em <%= post.date %></p>
+                <% post.content.forEach(section => { %>
+                    <% if (section.type === 'paragraph') { %>
+                        <p class="text-zinc-400 leading-relaxed text-lg"><%= section.text %></p>
+                    <% } else if (section.type === 'heading') { %>
+                        <h3 class="text-xl font-semibold mt-8"><%= section.text %></h3>
+                    <% } else if (section.type === 'list') { %>
+                        <ul class="list-disc list-inside text-zinc-400 leading-relaxed space-y-2">
+                            <% section.items.forEach(item => { %>
+                                <li><%= item %></li>
+                            <% }) %>
+                        </ul>
+                    <% } %>
+                <% }) %>
+            </article>
+        </main>
+        <%- include('partials/footer') %>
+    </body>
+</html>
