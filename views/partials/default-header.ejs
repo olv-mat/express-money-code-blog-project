@@ -1,8 +1,47 @@
 <header class="bg-zinc-900 border-b border-zinc-700 py-5 px-4 md:px-8">
     <div class="max-w-5xl mx-auto flex justify-between items-center">
         <a href="/" class="text-2xl font-bold text-white hover:text-zinc-300 transition">Money & Code</a>
-        <nav>
+        <nav class="hidden md:flex space-x-6">
             <a href="/sobre" class="text-sm text-zinc-300 hover:text-white transition">Sobre</a>
+            <a href="/privacidade" class="text-sm text-zinc-300 hover:text-white transition">Privacidade</a>
+            <a href="/contato" class="text-sm text-zinc-300 hover:text-white transition">Contato</a>
         </nav>
+        <div class="md:hidden flex items-center">
+            <button id="hamburger-button" class="text-white focus:outline-none">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+    </div>
+    <div id="mobile-menu" class="md:hidden transform bg-zinc-900 fixed inset-0 z-50 -translate-x-full transition-all duration-300">
+        <div class="flex justify-end p-4">
+            <button id="close-menu" class="text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+        <div class="flex flex-col items-center space-y-6 py-8">
+            <a href="/sobre" class="text-lg text-white hover:text-zinc-300 transition">Sobre</a>
+            <a href="/privacidade" class="text-lg text-white hover:text-zinc-300 transition">Privacidade</a>
+            <a href="/contato" class="text-lg text-white hover:text-zinc-300 transition">Contato</a>
+        </div>
     </div>
 </header>
+
+<script>
+    const hamburgerButton = document.getElementById('hamburger-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const closeButton = document.getElementById('close-menu');
+
+    hamburgerButton.addEventListener('click', () => {
+        mobileMenu.classList.remove('-translate-x-full');
+        mobileMenu.classList.add('translate-x-0');
+    });
+
+    closeButton.addEventListener('click', () => {
+        mobileMenu.classList.remove('translate-x-0');
+        mobileMenu.classList.add('-translate-x-full');
+    });
+</script>

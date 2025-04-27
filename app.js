@@ -9,6 +9,7 @@ const postsDir = path.join(__dirname, 'posts')
 const posts = {
     'fundos-imobiliarios-como-gerar-renda-passiva-atraves-do-mercado-imobiliario': '0106042025.json',
     'como-se-organizar-financeiramente-antes-de-investir': '0206042025.json',
+    'bitcoin-o-futuro-das-financas-digitais': '0127042025.json',
 }
 
 app.set('view engine', 'ejs')
@@ -35,6 +36,14 @@ app.get('/', (req, res) => {
 
 app.get('/sobre', (req, res) => {
     res.render('about')
+})
+
+app.get('/privacidade', (req, res) => {
+    res.render('privacy')
+})
+
+app.get('/contato', (req, res) => {
+    res.render('contact')
 })
 
 app.get('/artigo/:slug', (req, res) => {
