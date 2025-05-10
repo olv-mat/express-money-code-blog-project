@@ -6,8 +6,10 @@
         <main class="flex-grow px-4 md:px-8 py-10">
             <div class="max-w-5xl mx-auto space-y-12">
                 <%- include('partials/hero-section') %>
-                <section>
-                    <h3 class="text-2xl font-bold mb-8 border-b-2 border-zinc-700 pb-3 tracking-tight">Artigos</h3>
+                <section id="artigos">
+                    <h3 class="text-2xl font-bold mb-2 tracking-tight">Artigos</h3>
+                    <p class="text-zinc-400 mb-8">Conteúdos sobre tecnologia, finanças e como usar o código a seu favor.</p>
+                    <hr class="border-zinc-700 mb-8">
                     <div class="grid gap-8 md:grid-cols-2">
                         <% posts.forEach(post => { %>
                             <a href="/artigo/<%= post.slug %>" class="block bg-zinc-800 rounded-2xl overflow-hidden transform transition-transform duration-300 hover:scale-[1.02]">
